@@ -1,32 +1,14 @@
 import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+import {userRouter} from './routes/user'
+import { contentRouter } from './routes/content';
+import { shareRouter } from './routes/share';
 const app = express();
-dotenv.config();
+app.use(express.json())
 
-
-app.post("/api/v1/signup", (req,res)=>{
-
-})
-
-app.post("/api/v1/signin", (req,res)=>{
-    
-})
-
-
-app.post("/api/v1/content", (req,res)=>{
-    
-})
-
-app.get("/api/v1/content", (req,res)=>{
-    
-})
-
-app.delete("/api/v1/content", (req,res)=>{
-    
-})
- 
-app.post("/api/v1/brain/share", (req,res)=>{
-    
-})
+app.use('/api/v1/user',userRouter)
+app.use('/api/v1/content',contentRouter)
+app.use("/api/v1/share", shareRouter)
