@@ -1,8 +1,18 @@
-import { Router } from "express"
-
+import { Request, Response, Router } from "express"
+import { UserModel } from "../db";
 export const userRouter = Router();
 
-userRouter.post("/signup", (req,res)=>{
+userRouter.post("/signup", async (req :Request, res:Response)=>{
+  const username = req.body.username;
+  const password = req.body.password;
+    // TODO: zod validation , hash the password
+      await UserModel.create({
+         username:username,
+         password:password
+      })
+      res.json({
+        message:"user signed up"
+      })
 
 })
 
