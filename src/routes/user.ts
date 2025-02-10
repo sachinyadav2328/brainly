@@ -1,6 +1,8 @@
 import { Request, Response, Router } from "express"
 import { UserModel } from "../db";
+import jwt from "jsonwebtoken";
 export const userRouter = Router();
+const JWT_PASSWORD = "asdasd"
 
 userRouter.post("/signup", async (req :Request, res:Response)=>{
   const username = req.body.username;
@@ -16,8 +18,31 @@ userRouter.post("/signup", async (req :Request, res:Response)=>{
 
 })
 
-userRouter.post("/signin", (req,res)=>{
-    
+userRouter.post("/signin", async (req,res)=>{
+     const email = req.body.email;
+     const password = req.body.password;
+
+
+     const existingUser = await UserModel.findOne({
+                email:email,
+                password: password
+     })
+     
+     if(existingUser){
+      const token = jwt.sign({
+        id: existingUser._id
+      },JWT_PASSWORD)
+
+      res.json({
+        token
+       })
+     } else {
+      res.json({
+        message: "Incorrect credential"
+      })
+     }
+
+     
 })
 
 

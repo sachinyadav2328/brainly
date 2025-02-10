@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from "express";
-import jwt from "jsonwebtoken";
+
 import {userRouter} from './routes/user'
 import { contentRouter } from './routes/content';
 import { shareRouter } from './routes/share';
