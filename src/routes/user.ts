@@ -8,13 +8,20 @@ userRouter.post("/signup", async (req :Request, res:Response)=>{
   const username = req.body.username;
   const password = req.body.password;
     // TODO: zod validation , hash the password
+    try {
       await UserModel.create({
-         username:username,
-         password:password
-      })
+          username: username,
+          password: password
+      }) 
+
       res.json({
-        message:"user signed up"
+          message: "User signed up"
       })
+  } catch(e) {
+      res.status(411).json({
+          message: "User already exists"
+      })
+  }
 
 })
 

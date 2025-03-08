@@ -8,10 +8,7 @@ import { shareRouter } from './routes/share';
 const app = express();
 app.use(express.json())
 
-app.use('/api/v1/user',userRouter)
-app.use('/api/v1/content',contentRouter)
-app.use("/api/v1/share", shareRouter)
-
-
+app.use('/api/v1',userRouter)
+app.use('/api/v1',contentRouter)
 
 app.listen(3000);
