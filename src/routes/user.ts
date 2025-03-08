@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express"
 import { UserModel } from "../db";
 import jwt from "jsonwebtoken";
 export const userRouter = Router();
-const JWT_PASSWORD = "asdasd"
+const JWT_PASSWORD = process.env.JWT_PASSWORD as string
 
 userRouter.post("/signup", async (req :Request, res:Response)=>{
   const username = req.body.username;

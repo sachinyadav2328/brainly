@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 import { Schema,model } from "mongoose";
 
+const MONGO_URL = process.env.MONGO_URL as string;
+
+mongoose.connect(MONGO_URL)
 
 const UserSchema = new mongoose.Schema({
     username:{type:String,required:true,unique:true},
